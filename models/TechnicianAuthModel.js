@@ -34,7 +34,8 @@ technicianAuthSchema.methods.matchPasswords = async function(password) {
 };
 
 technicianAuthSchema.methods.getSignedToken = async function() {
-    return jwt.sign( { id: this._id }, process.env.JWT_SECRET, { expiresIn: process.env.EXPIRE, } );
+    return jwt.sign( { id: this._id }, process.env.JWT_SECRET, { expiresIn: process.env.JWT_EXPIRE, } );
+
 };
 
 
