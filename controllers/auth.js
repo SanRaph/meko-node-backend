@@ -1,5 +1,6 @@
-const Customerauth = require('../models/CustomeraAuthModel');
-const TechnicianAuth = require('../models/TechnicianAuthModel');
+
+const customerAuthModel = require('../models/CustomeraAuthModel');
+const TechnicianAuthModel = require('../models/TechnicianAuthModel');
 const ErrorResponse = require('../utils/errorResponse');
 
 exports.registerCustomer = async (req, res, next) => {
@@ -8,7 +9,7 @@ exports.registerCustomer = async (req, res, next) => {
 
     try {
 
-       const customer = new Customerauth( { username, email, password } );
+       const customer = new CustomerAuthModel( { username, email, password } );
        const registeredCustomer =  await customer.save();
 
         /* const customer = await Customerauth.create({ username, email, password }); */
@@ -29,7 +30,7 @@ exports.registerTechnician = async (req, res, next) => {
 
     try {
 
-        const technician = new TechnicianAuth( { username, email, password } );
+        const technician = new TechnicianAuthModel( { username, email, password } );
         const registeredTechnician = await technician.save();
 
 
@@ -54,7 +55,7 @@ exports.loginCustomer = async (req, res, next) => {
     }
 
     try {
-        const customer = await Customerauth.findOne({ email }).select('+password');
+        const customer = await CustomerAuthModel.findOne({ email }).select('+password');
         
         if( !customer ) {
             return next( new ErrorResponse( 'User not found', 404 ) );
@@ -84,7 +85,7 @@ exports.loginTechnician = async (req, res, next) => {
     }
 
     try {
-        const technician = await TechnicianAuth.findOne({ email }).select('+password');
+        const technician = await TechnicianAuthModel.findOne({ email }).select('+password');
 
         if( !technician ) {
             res.status(404).json({ success: false, error: 'Invalid credentials' });
@@ -108,9 +109,44 @@ exports.loginTechnician = async (req, res, next) => {
 
 
 
-exports.forgotpassword = (req, res, next) => {
-    res.send('Forgotpassword route');
+exports.forgotpassword = async (req, res, next) => {
+    const { email } = req.body;
+
+    try {
+        const customer = await customerAuthModel.findOne({ email });
+
+        if( !customer ) {
+           return next( new ErrorResponse( 'Email could not be sent', 404 ) );
+        }
+
+        const resetToken = customer.getResetCustomerToken();
+
+        await customer.save();
+
+        const resetUrl = `http://localhost:3000/passwordreset/${resetToken}`;
+
+        const message = `
+         <h1> You requested a password reset</h1>
+
+         <p> Please go to this link to reset your password </p>
+
+         <a href=${resetUrl} clicktracking=off > ${ resetUrl } </a>
+        `;
+
+
+        try {
+            
+        } catch (error) {
+            
+        }
+
+    } catch (error) {
+        
+    }
 };
+
+
+
 
 exports.resetpassword = (req, res, next) => {
     res.send('Resetpassword route');
