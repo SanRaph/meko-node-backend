@@ -116,12 +116,37 @@ exports.forgotpassword = async (req, res, next) => {
         const customer = await customerAuthModel.findOne({ email });
 
         if( !customer ) {
-           // return next( new ErrorResponse( 'Email could not be sent', 404 ) );
+           return next( new ErrorResponse( 'Email could not be sent', 404 ) );
         }
+
+        const resetToken = customer.getResetCustomerToken();
+
+        await customer.save();
+
+        const resetUrl = `http://localhost:3000/passwordreset/${resetToken}`;
+
+        const message = `
+         <h1> You requested a password reset</h1>
+
+         <p> Please go to this link to reset your password </p>
+
+         <a href=${resetUrl} clicktracking=off > ${ resetUrl } </a>
+        `;
+
+
+        try {
+            
+        } catch (error) {
+            
+        }
+
     } catch (error) {
         
     }
 };
+
+
+
 
 exports.resetpassword = (req, res, next) => {
     res.send('Resetpassword route');
