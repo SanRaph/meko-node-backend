@@ -2,6 +2,7 @@
 const customerAuthModel = require('../models/CustomeraAuthModel');
 const TechnicianAuthModel = require('../models/TechnicianAuthModel');
 const ErrorResponse = require('../utils/errorResponse');
+const sendEmail = require('../utils/sendEmail');
 
 exports.registerCustomer = async (req, res, next) => {
 
@@ -135,9 +136,15 @@ exports.forgotpassword = async (req, res, next) => {
 
 
         try {
-            
+            await sendEmail({ to: customer.email, subject: 'Password reset request', text: message });
+
+            res.status(200).json({ success: true, data: 'Email sent' });
+
+            //#########################################################
+
         } catch (error) {
-            
+            customer.getResetCustomerToken = undefined;
+
         }
 
     } catch (error) {
