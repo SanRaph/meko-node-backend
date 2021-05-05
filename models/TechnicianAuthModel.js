@@ -11,7 +11,7 @@ email: { type: String, required: [ true, 'Please provide email' ], unique: true,
 
 password: { type: String, required: [true, 'Please provide email'], minlength: 6, select: false },
 
-resetPasswordToken: { type: String },
+resetTechnicianPasswordToken: { type: String },
 
 resetPasswordExpire: Date,
 
@@ -34,7 +34,8 @@ technicianAuthSchema.methods.matchPasswords = async function(password) {
 };
 
 technicianAuthSchema.methods.getSignedToken = async function() {
-    return jwt.sign( { id: this._id }, process.env.JWT_SECRET, { expiresIn: process.env.EXPIRE, } );
+    return jwt.sign( { id: this._id }, process.env.JWT_SECRET, { expiresIn: process.env.JWT_EXPIRE, } );
+
 };
 
 

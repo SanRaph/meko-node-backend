@@ -1,4 +1,5 @@
 
+const customerAuth = require('../models/CustomeraAuthModel');
 const customerAuthModel = require('../models/CustomeraAuthModel');
 const TechnicianAuthModel = require('../models/TechnicianAuthModel');
 const ErrorResponse = require('../utils/errorResponse');
@@ -145,6 +146,10 @@ exports.forgotpassword = async (req, res, next) => {
             customer.resetPasswordToken = undefined;
 
             customer.resetPasswordExpire = undefined;
+
+            await customer.save();
+
+            return next( new ErrorResponse( 'Email could not be sent', 500 ) );
 
         }
 
