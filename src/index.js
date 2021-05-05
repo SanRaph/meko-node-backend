@@ -24,6 +24,7 @@ app.use('/api/auth', routesAuthJs);
 app.use('/api/private', privateRoutesAuthJs);
 
 //Error Handler should always be the last middleware
+
 app.use(errorhandler);
 
 
