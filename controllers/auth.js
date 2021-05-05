@@ -143,13 +143,13 @@ exports.forgotpassword = async (req, res, next) => {
 
 
         } catch (error) {
-            customer.resetCustomerPasswordToken = undefined;
+            customer.resetPasswordToken = undefined;
 
             customer.resetPasswordExpire = undefined;
 
             await customer.save();
 
-            return next( new ErrorResponse( 'Email could not be found', 500 ) );
+            return next( new ErrorResponse( 'Email could not be sent', 500 ) );
 
         }
 
