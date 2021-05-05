@@ -11,7 +11,7 @@ email: { type: String, required: [ true, 'Please provide email' ], unique: true,
 
 password: { type: String, required: [true, 'Please provide email'], minlength: 6, select: false },
 
-resetPasswordToken: { type: String },
+resetTechnicianPasswordToken: { type: String },
 
 resetPasswordExpire: Date,
 

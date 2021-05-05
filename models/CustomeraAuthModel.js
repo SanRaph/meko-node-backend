@@ -15,6 +15,7 @@ password: { type: String, required: [ true, 'Please provide password' ], minleng
 resetCustomerPasswordToken: { type: String },
 
 resetPasswordExpire: Date
+
 });
 
 customerAuthSchema.pre('save', async function(next) { 
