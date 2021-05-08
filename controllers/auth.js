@@ -1,6 +1,4 @@
-
-const customerAuth = require('../models/CustomeraAuthModel');
-const customerAuthModel = require('../models/CustomeraAuthModel');
+const CustomerAuthModel = require('../models/CustomerAuthModel');
 const TechnicianAuthModel = require('../models/TechnicianAuthModel');
 const ErrorResponse = require('../utils/errorResponse');
 const sendEmail = require('../utils/sendEmail');
@@ -114,21 +112,24 @@ exports.loginTechnician = async (req, res, next) => {
 exports.forgotpassword = async (req, res, next) => {
     const { email } = req.body;
 
+
     try {
-        const customer = await customerAuthModel.findOne({ email });
+        const customer = await CustomerAuthModel.findOne({ email });
+
+        console.log(customer);
 
         if( !customer ) {
-           return next( new ErrorResponse( 'Email could not be sent', 404 ) );
+           return next( new ErrorResponse( 'Email could not be sent 1', 404 ) );
         }
 
-        const resetToken = customer.getResetCustomerToken();
+        const resetToken = customer.getResetCustomerPasswordToken();
 
         await customer.save();
 
         const resetUrl = `http://localhost:3000/passwordreset/${resetToken}`;
 
         const message = `
-         <h1> You requested a password reset</h1>
+         <h1> You Requested A Password Reset</h1>
 
          <p> Please go to this link to reset your password </p>
 
@@ -137,7 +138,7 @@ exports.forgotpassword = async (req, res, next) => {
 
 
         try {
-            await sendEmail({ to: customer.email, subject: 'Password reset request', text: message });
+            await sendEmail({ to: customer.email, subject: 'Password Reset Request', text: message });
 
             res.status(200).json({ success: true, data: 'Email sent' });
 
@@ -149,11 +150,13 @@ exports.forgotpassword = async (req, res, next) => {
 
             await customer.save();
 
-            return next( new ErrorResponse( 'Email could not be sent', 500 ) );
+            return next( new ErrorResponse( 'Email could not be sent 2', 500 ) );
 
         }
 
     } catch (error) {
+
+        next( error );
         
     }
 };
