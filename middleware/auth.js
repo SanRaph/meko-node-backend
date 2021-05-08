@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-const CustomerAuthModel = require('../models/CustomeraAuthModel');
+const CustomerAuthModel = require('../models/CustomerAuthModel');
 const TechnicianAuthModel = require('../models/TechnicianAuthModel');
 const ErrorResponse = require('../utils/errorResponse');
 

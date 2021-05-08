@@ -53,6 +53,6 @@ customerAuthSchema.pre('save', async function(next) {
 
 
 
-const customerAuth = mongoose.model('CustomerAuth', customerAuthSchema);
+const CustomerAuthModel = mongoose.model('CustomerAuth', customerAuthSchema);
 
-module.exports = customerAuth;
+module.exports = CustomerAuthModel;

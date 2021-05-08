@@ -11,12 +11,12 @@ router.route("/registerTechnician").post(registerTechnician);
 
 router.route("/loginCustomer").post(loginCustomer);
 
-router.route("/loginTechnician").post(loginTechnician)
+router.route("/loginTechnician").post(loginTechnician);
 
 
 
 
-router.route('/forgotpassword').post()
+router.route("/forgotpassword").post(forgotpassword);
 
 
 
