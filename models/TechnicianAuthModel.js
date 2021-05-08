@@ -39,6 +39,6 @@ technicianAuthSchema.methods.getSignedToken = async function() {
 };
 
 
-const technicianAuth = mongoose.model('TechnicianAuth', technicianAuthSchema);
+const TechnicianAuthModel = mongoose.model('TechnicianAuth', technicianAuthSchema);
 
-module.exports = technicianAuth;
+module.exports = TechnicianAuthModel;
