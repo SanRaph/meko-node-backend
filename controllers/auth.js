@@ -16,7 +16,7 @@ exports.registerCustomer = async (req, res, next) => {
 
         sendCustomerToken( customer, 201, res );
 
-        res.status(200).json({ success: true, message: 'registered' });
+        res.status(200).json({ success: true, message: 'Customer registered' });
 
     } catch (error) {
         
@@ -37,6 +37,8 @@ exports.registerTechnician = async (req, res, next) => {
 
 
         sendTechnicianToken( technician, 201, res );
+
+        res.status(200).json({ success: true, message: 'Technician registered' });
         
     } catch (error) {
         
