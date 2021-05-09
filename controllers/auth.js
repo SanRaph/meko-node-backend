@@ -113,7 +113,7 @@ exports.loginTechnician = async (req, res, next) => {
 
 
 
-exports.forgotpassword = async (req, res, next) => {
+exports.forgotpasswordcustomer = async (req, res, next) => {
     const { email } = req.body;
 
 
@@ -123,7 +123,7 @@ exports.forgotpassword = async (req, res, next) => {
         console.log(customer);
 
         if( !customer ) {
-           return next( new ErrorResponse( 'Email could not be sent 1', 404 ) );
+           return next( new ErrorResponse( 'Email could not be sent', 404 ) );
         }
 
         const resetToken = customer.getResetCustomerPasswordToken();
@@ -165,6 +165,55 @@ exports.forgotpassword = async (req, res, next) => {
     }
 };
 
+
+exports.forgotpasswordtechnician = async ( req, res, next ) => {
+    const { email } = req.body;
+
+    try {
+        const technician = await TechnicianAuthModel.findOne({ email });
+
+        if( !customer ) {
+            return next( new ErrorResponse( 'Email could not be sent', 404 ) );
+        }
+
+        const resetToken = technician.getResetTechnicianPasswordToken();
+        
+        await technician.save();
+
+        const resetUrl = `http://localhost:3000/passwordreset/${resetToken}`;
+
+        const message = `
+         <h1> You Requested A Password Reset</h1>
+
+         <p> Please go to this link to reset your password </p>
+
+         <a href=${resetUrl} clicktracking=off > ${ resetUrl } </a>
+        `;
+
+        try {
+            await sendEmail({ to: technician.email, subject: 'Password Reset Request', text: message });
+
+            res.status(200).json({ success: true, data: 'Email sent' });
+            
+        } catch (error) {
+
+            technician.resetTechnicianPasswordToken = undefined;
+
+            technician.resetPasswordExpire = undefined;
+
+            await technician.save();
+
+            return next( new ErrorResponse( 'Email could not be sent 2', 500 ) );
+
+            
+        }
+
+
+
+    } catch (error) {
+        next( error );
+    }
+};
 
 
 

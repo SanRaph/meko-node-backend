@@ -1,3 +1,4 @@
+const crpto = require('crypto');
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
@@ -36,6 +37,16 @@ technicianAuthSchema.methods.matchPasswords = async function(password) {
 technicianAuthSchema.methods.getSignedToken = async function() {
     return jwt.sign( { id: this._id }, process.env.JWT_SECRET, { expiresIn: process.env.JWT_EXPIRE, } );
 
+};
+
+customerAuthSchema.methods.getResetTechnicianPasswordToken = async function() {
+    const resetTechnicianToken = crypto.randomBytes(20).toString('hex');
+
+    this.resetTechnicianPasswordToken = crypto.createHash('sha256').update(resetTechnicianToken).digest('hex');
+
+    this.resetPasswordExpire = Date.now() + 10 * ( 60 * 1000 );
+
+    return resetTechnicianToken;
 };
 
 

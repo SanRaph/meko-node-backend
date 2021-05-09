@@ -2,7 +2,7 @@ const { Router } = require('express');
 
 const router = Router();
 
-const { registerCustomer, registerTechnician, loginCustomer, loginTechnician, forgotpassword, resetpassword, } = require('../controllers/auth');
+const { registerCustomer, registerTechnician, loginCustomer, loginTechnician, forgotpasswordcustomer, forgotpasswordtechnician, resetpassword, } = require('../controllers/auth');
 
 router.route("/registerCustomer").post(registerCustomer);
 
@@ -14,9 +14,8 @@ router.route("/loginCustomer").post(loginCustomer);
 router.route("/loginTechnician").post(loginTechnician);
 
 
-
-
-router.route("/forgotpassword").post(forgotpassword);
+router.route("/forgotpasswordCustomer").post(forgotpasswordcustomer);
+router.route("/forgotpasswordTechnician").post(forgotpasswordtechnician);
 
 
 
