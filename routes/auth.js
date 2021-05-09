@@ -4,19 +4,19 @@ const router = Router();
 
 const { registerCustomer, registerTechnician, loginCustomer, loginTechnician, forgotpasswordcustomer, forgotpasswordtechnician, resetpassword, } = require('../controllers/auth');
 
-router.route("/registerCustomer").post(registerCustomer);
+router.route("/register-customer").post(registerCustomer);
 
-router.route("/registerTechnician").post(registerTechnician);
-
-
-router.route("/loginCustomer").post(loginCustomer);
-
-router.route("/loginTechnician").post(loginTechnician);
+router.route("/register-technician").post(registerTechnician);
 
 
-router.route("/forgotpasswordCustomer").post(forgotpasswordcustomer);
+router.route("/login-customer").post(loginCustomer);
 
-router.route("/forgotpasswordTechnician").post(forgotpasswordtechnician);
+router.route("/login-technician").post(loginTechnician);
+
+
+router.route("/forgotpassword-customer").post(forgotpasswordcustomer);
+
+router.route("/forgotpassword-technician").post(forgotpasswordtechnician);
 
 
 
