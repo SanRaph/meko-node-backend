@@ -15,6 +15,7 @@ router.route("/loginTechnician").post(loginTechnician);
 
 
 router.route("/forgotpasswordCustomer").post(forgotpasswordcustomer);
+
 router.route("/forgotpasswordTechnician").post(forgotpasswordtechnician);
 
 

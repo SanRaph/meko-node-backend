@@ -39,7 +39,7 @@ technicianAuthSchema.methods.getSignedToken = async function() {
 
 };
 
-customerAuthSchema.methods.getResetTechnicianPasswordToken = async function() {
+technicianAuthSchema.methods.getResetTechnicianPasswordToken = async function() {
     const resetTechnicianToken = crypto.randomBytes(20).toString('hex');
 
     this.resetTechnicianPasswordToken = crypto.createHash('sha256').update(resetTechnicianToken).digest('hex');

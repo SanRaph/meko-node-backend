@@ -172,7 +172,7 @@ exports.forgotpasswordtechnician = async ( req, res, next ) => {
     try {
         const technician = await TechnicianAuthModel.findOne({ email });
 
-        if( !customer ) {
+        if( !technician ) {
             return next( new ErrorResponse( 'Email could not be sent', 404 ) );
         }
 
