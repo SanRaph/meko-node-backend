@@ -16,6 +16,8 @@ exports.registerCustomer = async (req, res, next) => {
 
         sendCustomerToken( customer, 201, res );
 
+        res.status(200).json({ success: true, message: 'registered' });
+
     } catch (error) {
         
         next(error);
