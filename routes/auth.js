@@ -2,7 +2,7 @@ const { Router } = require('express');
 
 const router = Router();
 
-const { registerCustomer, registerTechnician, loginCustomer, loginTechnician, forgotpasswordcustomer, forgotpasswordtechnician, resetpassword, } = require('../controllers/auth');
+const { registerCustomer, registerTechnician, loginCustomer, loginTechnician, forgotpasswordcustomer, forgotpasswordtechnician, resetpasswordcustomer, resetpasswordtechnician } = require('../controllers/auth');
 
 router.route("/register-customer").post(registerCustomer);
 
@@ -20,9 +20,9 @@ router.route("/forgotpassword-technician").post(forgotpasswordtechnician);
 
 
 
-router.route('/resetpasswordcustomer/:resetToken').put();
+router.route('/resetpasswordcustomer/:resetToken').put(resetpasswordcustomer);
 
-router.route('/resetpasswordtechnician/:resetToken').put()
+router.route('/resetpasswordtechnician/:resetToken').put(resetpasswordtechnician);
 
 
 
