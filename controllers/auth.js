@@ -246,7 +246,7 @@ exports.resetpasswordcustomer = async (req, res, next) => {
 };
 
 
-exports.resetpasswordcustomer = async (req, res, next) => {
+exports.resetpasswordtechnician = async (req, res, next) => {
     const resetTechnicianPasswordToken = crypto.createHash('256').update(req.params.resetToken).digest('hex');
 
     try {
