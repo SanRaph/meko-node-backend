@@ -25,7 +25,8 @@ customerAuthSchema.pre('save', async function(next) {
 
     const salt = bcrypt.genSalt(30);
 
-    this.password = bcrypt.hash(this.password, salt);
+    this.password = bcrypt.hash(this.password, salt); 
+
 
     next();
 

@@ -1,3 +1,4 @@
+const crypto = require('crypto');
 const CustomerAuthModel = require('../models/CustomerAuthModel');
 const TechnicianAuthModel = require('../models/TechnicianAuthModel');
 const ErrorResponse = require('../utils/errorResponse');
@@ -217,8 +218,31 @@ exports.forgotpasswordtechnician = async ( req, res, next ) => {
 
 
 
-exports.resetpassword = (req, res, next) => {
-    res.send('Resetpassword route');
+exports.resetpasswordcustomer = async (req, res, next) => {
+
+    const resetCustomerPasswordToken = crypto.createHash('256').update(req.params.resetToken).digest('hex');
+
+
+
+    try {
+        const customer = await CustomerAuthModel.findOne({ resetCustomerPasswordToken, resetPasswordExpire: { $gt: Date.now() } });
+
+        if( !customer ){
+            return next( new ErrorResponse( 'Invalid reset Token', 400 ) );
+        }
+
+        customer.password = req.body.password;
+
+        customer.resetCustomerPasswordToken = undefined;
+        customer.resetPasswordExpire = undefined;
+
+        await customer.save();
+
+        res.status(201).json({ success: true, data: 'Password reset success' });
+
+    } catch (error) {
+         next(error);
+    }
 };
 
 

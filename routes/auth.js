@@ -20,7 +20,7 @@ router.route("/forgotpassword-technician").post(forgotpasswordtechnician);
 
 
 
-router.route('/resetpassword/:resetToken').post()
+router.route('/resetpasswordcustomer/:resetToken').post()
 
 
 
