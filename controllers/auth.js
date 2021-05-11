@@ -166,6 +166,27 @@ exports.forgotpasswordcustomer = async (req, res, next) => {
     }
 };
 
+//READ ALL CUSTOMERS
+exports.getallcustomers = async ( req, res, next ) => {
+    try {
+         const customers = await CustomerAuthModel.find();
+         res.status(200).json(customers);
+    } catch (error) {
+        next(error);
+    }
+};
+
+//####################################
+exports.getcustomer = async ( req, res, next ) => {
+    const { id } = req.params;
+    const customer = await CustomerAuthModel.findById({ _id: id })
+    if( !customer ) return next( new ErrorResponse( 'No customer with this id', 404 ) );
+
+    return res.json( customer );
+};
+
+
+
 
 exports.forgotpasswordtechnician = async ( req, res, next ) => {
     const { email } = req.body;
