@@ -149,7 +149,7 @@ exports.forgotpasswordcustomer = async (req, res, next) => {
 
 
         } catch (error) {
-            customer.resetPasswordToken = undefined;
+            customer.resetCustomerPasswordToken = undefined;
 
             customer.resetPasswordExpire = undefined;
 
@@ -245,6 +245,29 @@ exports.resetpasswordcustomer = async (req, res, next) => {
     }
 };
 
+
+exports.resetpasswordcustomer = async (req, res, next) => {
+    const resetTechnicianPasswordToken = crypto.createHash('256').update(req.params.resetToken).digest('hex');
+
+    try {
+        const technician = await TechnicianAuthModel.findOne({ resetCustomerPasswordToken, resetPasswordExpire: { $gt: Date.now() } });
+
+        if( !technician ) {
+            return next( new ErrorResponse( 'Invalid reset Token' ) );
+        }
+
+        technician.password = req.body.password;
+
+        technician.resetTechnicianPasswordToken = undefined;
+        technician.resetPasswordExpire = undefined;
+
+        await technician.save();
+
+        res.status(201).json({ success: true, data: 'Password reset success' });
+    } catch (error) {
+        next(error);
+    }
+};
 
 
 
