@@ -26,16 +26,33 @@ Register customer route: https://meko-node-backend.herokuapp.com/api/auth/regist
 Login customer route: https://meko-node-backend.herokuapp.com/api/auth/login-customer
 
 
+Get all customers route: https://meko-node-backend.herokuapp.com/api/auth/customers
+
+
+Get a customer route: https://meko-node-backend.herokuapp.com/api/auth/customer/1
+
+
 Customer forgotpassword route: https://meko-node-backend.herokuapp.com/api/auth/forgotpassword-customer
+
+
+Customer reset password route: https://meko-node-backend.herokuapp.com/api/auth/resetpasswordcustomer/<reset-token>
 
 
 Register technician route: https://meko-node-backend.herokuapp.com/api/auth/register-technician
 
 
 Login technician route: https://meko-node-backend.herokuapp.com/api/auth/login-technician
+  
+
+Get all technicians route: https://meko-node-backend.herokuapp.com/api/auth/technicians
 
 
-Technician forgot password route: https://meko-node-backend.herokuapp.com/api/auth/forgotpassword-technician
+Technician forgot password route: https://meko-node-backend.herokuapp.com/api/auth/resetpasswordtechnician/<reset-token>
+  
+  
+Technician reset token route: https://meko-node-backend.herokuapp.com/api/auth/customers
+
+
 
 ## Instructions for collaboration
 #### clone the project
