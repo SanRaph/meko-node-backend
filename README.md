@@ -29,6 +29,9 @@ Login customer route: https://meko-node-backend.herokuapp.com/api/auth/login-cus
 Get all customers route: https://meko-node-backend.herokuapp.com/api/auth/customers
 
 
+Customer protected data route: https://meko-node-backend.herokuapp.com/api/auth/customer-private-data
+
+
 Get a customer route: https://meko-node-backend.herokuapp.com/api/auth/customer/1
 
 
@@ -45,6 +48,9 @@ Login technician route: https://meko-node-backend.herokuapp.com/api/auth/login-t
   
 
 Get all technicians route: https://meko-node-backend.herokuapp.com/api/auth/technicians
+  
+  
+Technician protected data route: https://meko-node-backend.herokuapp.com/api/auth/technician-private-data
 
 
 Technician forgot password route: https://meko-node-backend.herokuapp.com/api/auth/resetpasswordtechnician/<reset-token>
