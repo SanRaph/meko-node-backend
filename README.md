@@ -58,6 +58,7 @@ Technician reset token route: https://meko-node-backend.herokuapp.com/api/auth/c
 #### clone the project
 #### take a look at the code and see what you can add
 #### create and asigne tasks here https://github.com/users/SanRaph/projects/1
+#### create a feature branch of the task and push it
 #### this project has 3 branches:- dev, uat and deployment,you can push to only dev branch
 #### make PR (pull request) for all your push
 #### we appreciate your effort
