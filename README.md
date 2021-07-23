@@ -1,4 +1,5 @@
 # meko-node-backend
+![Build Status](https://github.com/SanRaph/meko-node-backend/actions/workflows/node.js.yml/badge.svg)
 
 G&amp;G meko application - node backend apis
 
