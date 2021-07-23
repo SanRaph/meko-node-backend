@@ -1,5 +1,6 @@
 # meko-node-backend
-[![Build Status](https://travis-ci.org/raddevon/flask-permissions.png?branch=master)](meko-node-backend/.github/workflows/)
+[![Build Status](https://github.com/SanRaph/meko-node-backend/actions/workflows/node.js.yml)](meko-node-backend/.github/workflows/)
+
 
 G&amp;G meko application - node backend apis
 
